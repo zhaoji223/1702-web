@@ -1,18 +1,27 @@
 <template>
-    <div id="particles-js">
-        <div class="dota-pic-contain visible－window">
-            <img id="dota_bg" :src='"../../"+randomBg + ".jpg"' class="dota-bg">
-            <div class="bg-shadow visible－window"></div>
+    <div id='particles-js'>
+        <div class='dota-pic-contain visible－window'>
+            <img id='dota_bg' :src='"../../"+randomBg + ".jpg"' class='dota-bg'>
+            <div class='bg-shadow visible－window'></div>
         </div>
     </div>
 </template>
 
 <script>
     export default {
-        name: 'HelloWorld',
-        data () {
-            return {
-                msg: 'Welcome to Your Vue.js App'
+        mounted () {
+            particlesJS.load('particles-js', 'static/particles.json', function () {
+                console.log('callback - particles-js config loaded')
+            })
+            // 为背景添加过渡
+            // TODO 性能待提升
+            setTimeout(function () {
+                document.getElementById('dota_bg').classList.add('bg-transition')
+            }, 50)
+        },
+        computed: {
+            randomBg: function () {
+                return `assets/img/dota/p_${(parseInt(Math.random() * 32) + 1)}`
             }
         }
     }
