@@ -27,4 +27,12 @@ export default {
   i, em {
       font-style:normal;
   }
+  .visible－window {
+      width: 100vw;
+      height: 100vh;
+  }
+  @font-face {
+      font-family: logo;
+      src: url('./assets/font/OccidentalDismount-Mapped.otf');
+  }
 </style>
