@@ -1,16 +1,17 @@
 <template>
-    <div id='particles-js'>
+    <div id="particles-js">
         <div class='dota-pic-contain visible－window'>
-            <img id='dota_bg' :src='"../../"+randomBg + ".jpg"' class='dota-bg'>
-            <div class='bg-shadow visible－window'></div>
+            <img id="dota_bg" :src='randomBg' class="dota-bg">
+            <div class="bg-shadow visible－window"></div>
         </div>
     </div>
 </template>
 
 <script>
+    import 'particles.js'
     export default {
         mounted () {
-            particlesJS.load('particles-js', 'static/particles.json', function () {
+            particlesJS.load('particles-js', 'static/json/particles.json', function () {
                 console.log('callback - particles-js config loaded')
             })
             // 为背景添加过渡
@@ -21,7 +22,7 @@
         },
         computed: {
             randomBg: function () {
-                return `assets/img/dota/p_${(parseInt(Math.random() * 32) + 1)}`
+                return `static/img/dota/p_${(parseInt(Math.random() * 32) + 1)}.jpg`
             }
         }
     }
