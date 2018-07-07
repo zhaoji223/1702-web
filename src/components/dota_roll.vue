@@ -35,14 +35,23 @@
         text-align: center;
         .dota-bg {
             display: inline-block;
-            opacity: 0;
+            opacity: .3;
             transform-origin: 50% 50%;
             transition: transform 15s, opacity 3s;
-            height: 115%;
+            height: 100%;
+            -webkit-transform: scale(1.08);
+            -moz-transform: scale(1.08);
+            -ms-transform: scale(1.08);
+            -o-transform: scale(1.08);
+            transform: scale(1.08);
         }
         .bg-transition {
             opacity: 1;
-            transform: translateX(10px) scale(1.08);
+            -webkit-transform: scale(1);
+            -moz-transform: scale(1);
+            -ms-transform: scale(1);
+            -o-transform: scale(1);
+            transform: scale(1);
         }
         .bg-shadow {
             position: absolute;
