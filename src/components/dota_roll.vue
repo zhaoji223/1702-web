@@ -80,7 +80,6 @@
                 position: absolute;
                 top: 0;
                 background-color: rgba(0,0,0,.4);
-                z-index: 999;
             }
         }
         .roll-pannel {
@@ -126,6 +125,26 @@
                 .desc {
                     display: inline-block;
                     width: 50%;
+                }
+            }
+        }
+        @media (max-width: 420px) {
+            .pic-contain {
+                .bg {
+                    transform: scale(1.08) translate(calc(-50% + 50vw), calc(-50% + 50vh));
+                }
+            }
+            .roll-pannel {
+                width: 200px;
+                .roll {
+                    width: 200px;
+                }
+                .roll-item {
+                    width: 160px;
+                    padding-left: 40px;
+                    .desc {
+                        width: 60%;
+                    }
                 }
             }
         }
