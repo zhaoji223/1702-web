@@ -44,7 +44,6 @@
                 return 'Ordinary boy'
             }
         },
-
         mounted () {
             let dotaBg = document.getElementById('dota_bg')
             particlesJS.load('particles-js', 'static/json/particles.json', function () {
