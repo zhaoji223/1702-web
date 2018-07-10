@@ -9,7 +9,6 @@
                 Roll your fate
             </div>
             <div style="margin: 30px 0 30px 0;">
-                <!--<div v-for="(item, index) in list" :key="index" class="roll-item">{{item.label + '&#12288;&#12288;&#12288;' + item.number}}</div>-->
                 <div v-for="(item, index) in list" :key="index" class="roll-item">
                     <span class="desc">{{label(index)}}</span>
                     <span>{{item}}</span>
@@ -46,14 +45,20 @@
             }
         },
         mounted () {
+            let dotaBg = document.getElementById('dota_bg')
             particlesJS.load('particles-js', 'static/json/particles.json', function () {
                 console.log('callback - particles-js config loaded')
             })
-            // 为背景添加过渡
-            // TODO 性能待提升
-            setTimeout(function () {
-                document.getElementById('dota_bg').classList.add('bg-transition')
-            }, 50)
+            if (document.documentElement.clientWidth > 420) {
+                setTimeout(function () {
+                    dotaBg.classList.add('bg-transition')
+                }, 50)
+            } else {
+                setTimeout(function () {
+                    dotaBg.style.transform = 'scale(1.08) translate(calc(-50% + 50vw), calc(-50% + 50vh))'
+                    dotaBg.style.opacity = '1'
+                }, 50)
+            }
         }
     }
 </script>
@@ -129,11 +134,6 @@
             }
         }
         @media (max-width: 420px) {
-            .pic-contain {
-                .bg {
-                    transform: scale(1.08) translate(calc(-50% + 50vw), calc(-50% + 50vh));
-                }
-            }
             .roll-pannel {
                 width: 200px;
                 .roll {
