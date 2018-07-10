@@ -1,5 +1,5 @@
 <template>
-    <div id="particles-js" class="dota-roll">
+    <div id="particles-js" class="dota-roll visible－window">
         <div class='pic-contain visible－window'>
             <img id="dota_bg" :src='randomBg' class="bg">
             <div class="bg-shadow visible－window"></div>
@@ -24,7 +24,8 @@
     export default {
         data () {
             return {
-                list: []
+                list: [],
+                randomBg: `static/img/dota/p_${(parseInt(Math.random() * 32) + 1)}.jpg`
             }
         },
         methods: {
@@ -53,11 +54,6 @@
             setTimeout(function () {
                 document.getElementById('dota_bg').classList.add('bg-transition')
             }, 50)
-        },
-        computed: {
-            randomBg: function () {
-                return `static/img/dota/p_${(parseInt(Math.random() * 32) + 1)}.jpg`
-            }
         }
     }
 </script>
@@ -84,6 +80,7 @@
                 position: absolute;
                 top: 0;
                 background-color: rgba(0,0,0,.4);
+                z-index: 999;
             }
         }
         .roll-pannel {
