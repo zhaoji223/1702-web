@@ -10,6 +10,27 @@ var fileList = []
 getFileList(dataPath)
 
 fileList.forEach(filePath => {
+    handleRouter(filePath)
+})
+
+app.listen('19000', function() {
+    console.log('listen 19000')
+})
+
+function getFileList(path) {
+    let files = fs.readdirSync(path)
+    files.forEach(item => {
+        let tempPath = `${path}/${item}`
+        let stats = fs.statSync(tempPath)
+        if (stats.isDirectory()) {
+            getFileList(tempPath)
+        } else {
+            fileList.push(tempPath)
+        }
+    })
+}
+
+function handleRouter(filePath) {
     let fileJson = require(filePath)
     router.get('/', (req, res) => {
         res.send(fileJson)
@@ -33,21 +54,4 @@ fileList.forEach(filePath => {
     })
 
     app.use(config[filePath.split('mock')[1]], router)
-})
-
-app.listen('19000', function() {
-    console.log('listen 19000')
-})
-
-function getFileList(path) {
-    let files = fs.readdirSync(path)
-    files.forEach(item => {
-        let tempPath = `${path}/${item}`
-        let stats = fs.statSync(tempPath)
-        if (stats.isDirectory()) {
-            getFileList(tempPath)
-        } else {
-            fileList.push(tempPath)
-        }
-    })
 }
