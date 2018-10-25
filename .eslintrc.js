@@ -33,5 +33,6 @@ module.exports = {
         'no-undef': 'off',
         'no-unused-vars': 'off',
         'eol-last': 0,
+        "space-before-function-paren": ["error", "never"],
     }
 }
