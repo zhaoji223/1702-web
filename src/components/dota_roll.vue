@@ -21,19 +21,19 @@
 <script>
     import 'particles.js'
     export default {
-        data () {
+        data() {
             return {
                 list: [],
                 randomBg: `static/img/dota/p_${(parseInt(Math.random() * 32) + 1)}.jpg`
             }
         },
         methods: {
-            addRollItem () {
+            addRollItem() {
                 if (this.list.length < 3) {
                     this.list.push(Math.trunc(Math.random() * 100))
                 }
             },
-            label (index) {
+            label(index) {
                 let list = this.list
                 if (list[index] === Math.max(...list)) {
                     return 'Lucky guy'
@@ -44,21 +44,26 @@
                 return 'Ordinary boy'
             }
         },
-        mounted () {
+        mounted() {
             let dotaBg = document.getElementById('dota_bg')
-            particlesJS.load('particles-js', 'static/json/particles.json', function () {
+            particlesJS.load('particles-js', 'static/json/particles.json', function() {
                 console.log('callback - particles-js config loaded')
             })
             if (document.documentElement.clientWidth > 420) {
-                setTimeout(function () {
+                setTimeout(function() {
                     dotaBg.classList.add('bg-transition')
                 }, 50)
             } else {
-                setTimeout(function () {
+                setTimeout(function() {
                     dotaBg.style.transform = 'scale(1.08) translate(calc(-50% + 50vw), calc(-50% + 50vh))'
                     dotaBg.style.opacity = '1'
                 }, 50)
             }
+        },
+        beforeCreate() {
+            console.log(encodeURIComponent(window.location.href))
+            // 请检查参数是否填写错误，如redirect_uri的域名与审核时填写的授权域名不一致或scope不为snsapi_login
+            // window.location.href = `https://open.weixin.qq.com/connect/qrconnect?appid=wxbdc5610cc59c1631&redirect_uri=http%3A%2F%2F172.16.21.144%3A8081%2F%23%2F&scope=snsapi_login#wechat_redirect`
         }
     }
 </script>
