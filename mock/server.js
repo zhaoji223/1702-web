@@ -9,6 +9,7 @@ var fileList = []
 
 getFileList(dataPath)
 
+
 fileList.forEach(filePath => {
     handleRouter(filePath)
 })
@@ -18,13 +19,18 @@ app.listen('19000', function() {
 })
 
 function getFileList(path) {
+    // readdirSync 该属性指定用于传给回调的文件名的字符编码
     let files = fs.readdirSync(path)
+    console.log(files)
     files.forEach(item => {
         let tempPath = `${path}/${item}`
+        // 返回的 fs.Stats 对象中的数值是否应为 bigint 型。默认值: false
         let stats = fs.statSync(tempPath)
         if (stats.isDirectory()) {
+            // 如果是 文件夹, 则递归
             getFileList(tempPath)
         } else {
+            // fileList 中存储 的是文件 path
             fileList.push(tempPath)
         }
     })
